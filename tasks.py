@@ -53,9 +53,8 @@ def convolve_1d(input_array, kernel_array):
         output_array[i] = np.sum(input_array[i:i + len(kernel_array)] * kernel_array)
     
     return output_array
-# -----------------------------------------------
-# Another tip: write test cases like this, so you can easily test your function.
-input_array = np.array([1, 2, 3, 4, 5])
+ # Test case
+input_array = np.array([1, 2, 3, 4, 6])
 kernel_array = np.array([1, 0, -1])
 print(convolve_1d(input_array, kernel_array))
 
@@ -107,17 +106,19 @@ def convolute_2d(input_matrix, kernel_matrix):
     # Initialize the output matrix with zeros
     output_matrix = np.zeros((output_height, output_width))
     
-    # Flip the kernel for standard convolution
-    flipped_kernel = np.flipud(np.fliplr(kernel_matrix))
-    
-    # Perform 2D convolution
+    # Perform 2D convolution without flipping the kernel
     for i in range(output_height):
         for j in range(output_width):
             # Extract the current segment of the input matrix
-            current_segment = input_matrix[i:i + flipped_kernel.shape[0], j:j + flipped_kernel.shape[1]]
+            current_segment = input_matrix[i:i + kernel_matrix.shape[0], j:j + kernel_matrix.shape[1]]
             # Perform element-wise multiplication and sum the result
-            output_matrix[i, j] = np.sum(current_segment * flipped_kernel)
+            output_matrix[i, j] = np.sum(current_segment * kernel_matrix)
     
     return output_matrix
+
+# Test case
+input_matrix = np.array([[2, 2, 3], [4, 5, 6], [7, 8, 10]])
+kernel_matrix = np.array([[1, 0], [0, -1]])
+print(convolute_2d(input_matrix, kernel_matrix)) 
 
 # -----------------------------------------------
