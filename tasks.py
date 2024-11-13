@@ -35,26 +35,22 @@ print(compute_output_size_1d(input_array, kernel_array))
 
 # Your code here:
 # -----------------------------------------------
-# Function to compute the output size for 1D convolution
 def compute_output_size_1d(input_array, kernel_array):
+    # Calculate the output length for 1D convolution
     input_length = len(input_array)
     kernel_length = len(kernel_array)
     return input_length - kernel_length + 1
 
-# Function to perform 1D convolution
 def convolve_1d(input_array, kernel_array):
     # Calculate the output length
     output_length = compute_output_size_1d(input_array, kernel_array)
-    # Initialize the output array
+    # Initialize an empty output array of the calculated length
     output_array = np.zeros(output_length)
     
-    # Flip the kernel to perform convolution correctly
-    flipped_kernel = kernel_array[::-1]
-    
-    # Perform convolution
+    # Perform convolution without flipping the kernel
     for i in range(output_length):
-        # Apply the kernel to the current segment of input_array
-        output_array[i] = np.sum(input_array[i:i + len(flipped_kernel)] * flipped_kernel)
+        # Element-wise multiplication and sum for the current segment
+        output_array[i] = np.sum(input_array[i:i + len(kernel_array)] * kernel_array)
     
     return output_array
 # -----------------------------------------------
