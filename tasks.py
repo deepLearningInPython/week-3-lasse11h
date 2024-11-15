@@ -106,7 +106,7 @@ def convolute_2d(input_matrix, kernel_matrix):
     # Initialize the output matrix with zeros
     output_matrix = np.zeros((output_height, output_width))
     
-    # Perform 2D convolution without flipping the kernel
+    
     for i in range(output_height):
         for j in range(output_width):
             # Extract the current segment of the input matrix
